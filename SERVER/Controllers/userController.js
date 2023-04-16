@@ -1,6 +1,7 @@
 const User = require("../Models/User_Model")
 const ErrorHandler = require("../Utils/ErrorHandler")
 const { sendToken } = require("../Utils/SetCookieToken")
+const SendEmail = require("../Utils/SendEmail")
 const AsyncErrors = require("../middleware/AsyncErrors")
 
 // Register User
@@ -45,4 +46,30 @@ exports.Logout = AsyncErrors(async (req, res, next) => {
                 success: true,
                 message: "Logging Out Successfully"
         })
+})
+
+
+exports.ForgotPassword = AsyncErrors(async (req, res, next) => {
+        const user = await User.findOne({ email: req.body.email })
+        if (!user) { return next(new ErrorHandler(404, "Wrong Email Address")) }
+        await user.save({ validateBeforeSave: false })
+        const resetToken = await user.getResetPasswordToken()
+        const resetPasswordURL = `${req.protocol}://${req.get("host")}/api/v1/user/password/reset/${resetToken}`
+        const message = `Your Password Reset Token is \n\n ${resetPasswordURL}\n\n If you Have Not Requested This Email Then, Please Ignore It`
+        try {
+                await SendEmail({
+                        email: user.email,
+                        subject: `NetBag Account Password Recovery`,
+                        message
+                })
+                res.status(200).json({
+                        success: true,
+                        message: `Email sent to ${user.email} successfully`
+                })
+        } catch (error) {
+                user.resetPasswordToken = undefined
+                user.resetPasswordExpire = undefined
+                await user.save({ validateBeforeSave: false })
+                next(new ErrorHandler(500, error.message))
+        }
 })

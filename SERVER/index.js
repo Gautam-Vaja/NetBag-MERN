@@ -22,6 +22,7 @@ app.use(cookieParser())
 
 app.use("/api/v1/products", require("./Routes/ProductRoute"))
 app.use("/api/v1/user", require("./Routes/UserRoute"))
+app.use("/api/v1/order", require("./Routes/OrderRoute"))
 
 
 const server = app.listen(port, () => {

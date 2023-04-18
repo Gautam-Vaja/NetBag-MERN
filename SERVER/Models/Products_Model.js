@@ -17,7 +17,7 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Please Enter Product Price"],
   },
-  ratings: {
+  rattings: {
     type: Number,
     default: 0,
   },
@@ -44,6 +44,11 @@ const ProductSchema = new mongoose.Schema({
     default: 0
   },
   reviews: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
     name: {
       type: String,
       required: [true, "Reviewer Name Can Not be Blank"]
@@ -55,7 +60,7 @@ const ProductSchema = new mongoose.Schema({
     comment: {
       type: String,
       required: true
-    },
+    }
   }],
   user: {
     type: mongoose.Schema.ObjectId,

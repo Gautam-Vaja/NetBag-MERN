@@ -4,7 +4,7 @@ const ErrorHandler = require("../Utils/ErrorHandler")
 const AsyncErrors = require("../middleware/AsyncErrors")
 
 
-exports.GetAllProducts = AsyncErrors(async (req, res) => {
+exports.GetAllProducts = AsyncErrors(async (req, res, next) => {
     const ProductCount = await Products.countDocuments()
     const resultPerPage = 5
     const apiFeature = new ApiFeatures(Products.find(), req.query).search().filter().pagination(resultPerPage)
@@ -111,20 +111,19 @@ exports.DeleteReview = AsyncErrors(async (req, res, next) => {
 
     const product = await Products.findById(req.query.ProductId)
     if (!product) { return next(new ErrorHandler("404", "Product Not Found")) }
-     const reviews = product.reviews.filter((rev) => { rev._id.toString() !== req.query.id.toString() })
-     let avg = 0
+    const reviews = product.reviews.filter((rev) => { rev._id.toString() !== req.query.id.toString() })
+    let avg = 0
     reviews.forEach((rev) => {
         avg += rev.ratting
     })
     numofreviews = product.reviews.length
     rattings = avg / numofreviews
-     await Products.findByIdAndUpdate(req.query.ProductId, { reviews, numofreviews, rattings }, {
+    await Products.findByIdAndUpdate(req.query.ProductId, { reviews, numofreviews, rattings }, {
         new: true,
         runValidators: true
-    }) 
+    })
     res.status(200).json({
         success: true
     })
- })
+})
 
- 

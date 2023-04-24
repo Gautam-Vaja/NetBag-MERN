@@ -1,13 +1,17 @@
 const express = require("express")
 const dotenv = require("dotenv")
+const cors = require("cors");
 const cookieParser = require("cookie-parser")
+dotenv.config({ path: __dirname + "\\config\\config.env" })
 const ConnectToMongo = require("./config/db")
 const Error = require("./middleware/Error")
-dotenv.config({ path: "./config/config.env" })
-const port = process.env.PORT
+const port = process.env.PORT || 8000
 const app = express()
 ConnectToMongo()
 
+
+
+console.log(process.env.COOKIE_EXPIRES)
 // Handlaling Uncaught Exceptoion
 process.on("uncaughtException", (error) => {
     console.log(error.message)
@@ -16,6 +20,7 @@ process.on("uncaughtException", (error) => {
 
 })
 
+app.use(cors());
 app.use(express.json())
 app.use(Error)
 app.use(cookieParser())

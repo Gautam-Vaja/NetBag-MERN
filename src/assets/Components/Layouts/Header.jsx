@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../../../../public/NetBag-Logo.png';
 import { Link } from 'react-router-dom';
+import SearchBox from './ReUseble/SearchBox';
 
 
 export default function Header() {
@@ -199,27 +200,9 @@ export default function Header() {
                                                                                         </Link>
                                                                                 </div>
                                                                         </li>
-                                                                        <li className="nav-item">
-                                                                                <Link className="nav-link disabled" to="./#">
-                                                                                        <span className="nav-link-icon d-md-none d-lg-inline-block">{/* Download SVG icon from http://tabler-icons.io/i/star */}
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>
-                                                                                        </span>
-                                                                                        <span className="nav-link-title">
-                                                                                                Disabled
-                                                                                        </span>
-                                                                                </Link>
-                                                                        </li>
+
                                                                 </ul>
-                                                                <div className="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
-                                                                        <form action="./" method="get" autoComplete="off" noValidate="">
-                                                                                <div className="input-icon">
-                                                                                        <span className="input-icon-addon">
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
-                                                                                        </span>
-                                                                                        <input type="text" value="" className="form-control" placeholder="Search…" aria-label="Search in website" onChange={OnChangeHandler} />
-                                                                                </div>
-                                                                        </form>
-                                                                </div>
+                                                                <SearchBox />
                                                         </div>
                                                 </div>
                                         </div>

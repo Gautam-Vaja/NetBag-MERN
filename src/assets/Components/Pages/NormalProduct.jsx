@@ -17,7 +17,7 @@ const NormalProduct = ({ product }) => {
     return (
         <>
 
-            <Link className="card card-link-pop card-link" to={`/products/${_id}`}>
+            <Link className="card card-link-pop card-link" to={`/product/${_id}`}>
                 <div div className="img-responsive img-responsive-21x9 p-0 text-center py-3 " style={{ backgroundColor: " rgb(230, 231, 233, 0.39)" }} >
                     <img src={images[0].url} height="250" width="auto" />
                 </div>

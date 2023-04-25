@@ -2,7 +2,7 @@ import React from 'react'
 import ProductImages from './ReUsable/ProductImages'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { GetProductDetails } from '../Services/Actions/ProductAction'
+import { ClearErrors, GetProductDetails } from '../Services/Actions/ProductAction'
 import { Link, useParams } from 'react-router-dom'
 import { DotLoader } from 'react-spinners'
 import OffersSection from './ReUsable/OffersSection'
@@ -21,12 +21,13 @@ const ProductDetails = () => {
     useEffect(() => {
         if (error) {
             console.log(error)
+            dispatch(ClearErrors())
         }
         dispatch(GetProductDetails(params.id))
-    }, [dispatch, Error, params.id])
+    }, [])
 
     const { _id, brand, name, price, rattings, numofreviews, description, stock, reviews } = product
-    console.log(reviews)
+
     const images = [{ url: "public\\NetBag-Logo-Mini.png", public_id: "HelloID", _id: "12y89y20orh918yr01" }]
     const options = {
         edit: false,
@@ -44,7 +45,7 @@ const ProductDetails = () => {
                         <div className="col-5 p-0">
                             <ProductImages images={images} />
                         </div>
-                        <div className="col-4 p-3">
+                        <div className="col-4 p-3 ">
 
                             <Link to="" className='fs-3'> Visit The {brand} Store</Link>
                             <p className="fs-1 fw-bolder lh-5 my-2">{name}</p>
@@ -221,7 +222,7 @@ const ProductDetails = () => {
                     </div>
 
             }
-        </div>
+        </div >
 
     )
 }

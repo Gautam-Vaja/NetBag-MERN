@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import NormalProduct from './NormalProduct'
 import { GetProduct } from '../Services/Actions/ProductAction'
 import { useSelector, useDispatch } from 'react-redux'
 import DotsLoading from '../Loaders/DotsLoading'
+import { useParams } from 'react-router-dom'
+import Pagination from 'react-js-pagination'
 
 const Products = () => {
-    const dispatch = useDispatch()
 
-    const { loading, product, productCount, error } = useSelector((state) => state.ProductReducer)
+    const dispatch = useDispatch()
+    const params = useParams()
+
+    const { loading, product, productCount, error, resultPerPage } = useSelector((state) => state.ProductReducer)
     useEffect(() => {
         if (error) {
             console.log(error)
+            dispatch(ClearErrors())
         }
-        dispatch(GetProduct())
-    }, [dispatch, Error])
+        dispatch(GetProduct(params.keyword))
+    }, [dispatch, error, params.keyword])
 
 
     return (
@@ -28,7 +33,12 @@ const Products = () => {
                         })
                     }
                 </div>
+
+
+
+
             </div>
+
         </>
     )
 }

@@ -32,6 +32,10 @@ const ProductSchema = mongoose.Schema({
         type: String,
         required: [true, "Enter Product Category"]
     },
+    tags: {
+        type: String,
+        default: "General"
+    },
     stock: {
         type: Number,
         required: [true, "Enter Product Stock"],

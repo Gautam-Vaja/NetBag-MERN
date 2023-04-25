@@ -11,4 +11,5 @@ router.route("/reviews").get(GetProductReviews).delete(AuthenticatedUser, Delete
 router.route("/:id").delete(AuthenticatedUser, AuthoriseRole("admin"), DeleteProduct)
 router.route("/:id").get(GetProductDetail)
 
+
 module.exports = router 

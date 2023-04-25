@@ -7,9 +7,13 @@ import { Link, useParams } from 'react-router-dom'
 import { DotLoader } from 'react-spinners'
 import OffersSection from './ReUsable/OffersSection'
 import ServicesByNetbag from './ReUsable/ServicesByNetbag'
+import ReactStars from "react-rating-stars-component"
+import ReviewsSection from './ReUsable/ReviewsSection'
+
 
 
 const ProductDetails = () => {
+
     const dispatch = useDispatch()
     const params = useParams()
 
@@ -21,8 +25,17 @@ const ProductDetails = () => {
         dispatch(GetProductDetails(params.id))
     }, [dispatch, Error, params.id])
 
-    const { _id, brand, name, price, rattings, numofreviews, description, stock } = product
+    const { _id, brand, name, price, rattings, numofreviews, description, stock, reviews } = product
+    console.log(reviews)
     const images = [{ url: "public\\NetBag-Logo-Mini.png", public_id: "HelloID", _id: "12y89y20orh918yr01" }]
+    const options = {
+        edit: false,
+        color: "gray",
+        activeColor: "#F7D060",
+        size: window.innerWidth < 600 ? 15 : 20,
+        value: rattings > 0 ? +rattings : 0,
+        isHalf: true
+    }
     return (
         <div>
             {
@@ -38,10 +51,10 @@ const ProductDetails = () => {
                             <p className="fs-1 fw-bolder lh-5 my-2">
                                 {
                                     rattings > 0 ? <div className="d-flex my-3 align-items-center">
-                                        <span className='m-0 p-0'>
+                                        <span className='mx-2 p-0'>
                                             <ReactStars {...options} />
                                         </span>
-                                        <span className='m-0 p-0'>
+                                        <span className='mx-2 fs-3 p-0'>
                                             ({numofreviews}) rattings
                                         </span>
                                     </div> : <div className="d-flex my-3 align-items-center">
@@ -89,7 +102,7 @@ const ProductDetails = () => {
                                                 <span className="form-check-label">With Exchange </span>
                                                 <div className="d-flex  align-items-center">
                                                     <span className=" fs-4">Up to </span>
-                                                    <span className="text-danger fw-bold fs-4 mx-1"> &#8377;{price}.00</span>
+                                                    <span className="text-danger fw-bold fs-4 mx-1"> &#8377;{Math.round(price / 3)}.00</span>
                                                     <span className=" fs-4"> off</span>
                                                 </div>
                                             </label>
@@ -152,6 +165,59 @@ const ProductDetails = () => {
                             </div>
 
                         </div >
+                        <hr className='my-3 ' />
+                        <>
+
+                            <div className="row d-flex justify-content-between">
+                                <div className="col-3 px-3">
+                                    <p className=' py-0 fw-bolder fs-2'> Customer Reviews </p>
+
+                                    <p className=" lh-5 m-0">
+                                        {
+                                            rattings > 0 ? <div>
+                                                <div className='d-flex align-items-center'>
+                                                    <span className='m-0 me-2 p-0'>
+                                                        <ReactStars {...options} />
+                                                    </span>
+                                                    <span className='m-0 fs-3   p-0'>
+                                                        {rattings} Out of 5
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <p>
+                                                        {numofreviews} rattings
+                                                    </p>
+                                                </div>
+                                            </div> : <div className="d-flex my-3 align-items-center">
+                                                <span className=' fs-3 mb-1'>
+                                                    No Review Yet
+                                                </span>
+                                            </div>
+                                        }
+                                    </p>
+                                    <hr className='my-3' />
+                                    <p className=' p-0 mb-3 fw-bolder fs-2'> Review This Product </p>
+                                    <button className="btn  w-100 bg-purple-lt" style={{ background: "#3A003D" }}>
+                                        Write a product review
+                                    </button>
+
+                                </div>
+                                <div className="col-9 px-3 ">
+
+                                    {reviews && reviews[0] ?
+                                        reviews.map((element) => <ReviewsSection review={element} />)
+
+                                        : <div className="d-flex justify-content-center align-items-center">
+                                            <p className=' p-0 mb-3 fw-bolder fs-2'> No Reviews </p>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+
+                            <>
+                            </>
+                        </>
                     </div>
 
             }

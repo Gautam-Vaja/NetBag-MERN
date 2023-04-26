@@ -6,7 +6,7 @@ const OffersSection = () => {
         <>
             <div className="d-flex align-items-center justify-content-start mb-2 ">
                 <img src={OffersLogo} alt="" height="40" width="auto" />
-                
+                <p className="my-3 py-0 fw-bolder fs-3">Special Offers </p>
             </div>
 
             <div id="carousel-controls" className="carousel slide" data-bs-ride="carousel">

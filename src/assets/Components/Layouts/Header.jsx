@@ -11,7 +11,7 @@ export default function Header() {
         }
         return (
                 <>
-                        <div className="mb-3 sticky-top  ">
+                        <div className=" sticky-top  ">
                                 <header className="navbar navbar-expand-md navbar-light d-print-none  ">
                                         <div className="container-xl">
                                                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,21 +23,8 @@ export default function Header() {
                                                                 Dashboard
                                                         </Link>
                                                 </h1>
-                                                <div className="navbar-nav flex-row order-md-last">
-                                                        <div className="nav-item d-none d-md-flex me-3">
-                                                                <div className="btn-list">
-                                                                        <Link to="https://github.com/tabler/tabler" className="btn" target="_blank" rel="noreferrer">
-                                                                                {/*- Download SVG icon from http://tabler-icons.io/i/brand-github */}
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
-                                                                                Source code
-                                                                        </Link>
-                                                                        <Link to="https://github.com/sponsors/codecalm" className="btn" target="_blank" rel="noreferrer">
-                                                                                {/* Download SVG icon from http://tabler-icons.io/i/heart */}
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon text-pink" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>
-                                                                                Sponsor
-                                                                        </Link>
-                                                                </div>
-                                                        </div>
+                                                <div className="navbar-nav flex-row order-md-last d-flex align-items-center">
+                                                        <SearchBox />
                                                         <div className="d-none d-md-flex">
                                                                 <Link to="?theme=dark" className="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
                                                                         {/*- Download SVG icon from http://tabler-icons.io/i/moon */}
@@ -153,60 +140,7 @@ export default function Header() {
                                         </div>
                                 </header>
 
-                                <header className="navbar-expand-md   ">
-                                        <div className="collapse navbar-collapse" id="navbar-menu">
-                                                <div className="navbar navbar-light">
-                                                        <div className="container-xl">
-                                                                <ul className="navbar-nav">
-                                                                        <li className="nav-item active">
-                                                                                <Link className="nav-link" to="./#">
-                                                                                        <span className="nav-link-icon d-md-none d-lg-inline-block">{/* Download SVG icon from http://tabler-icons.io/i/star */}
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>
-                                                                                        </span>
-                                                                                        <span className="nav-link-title">
-                                                                                                First
-                                                                                        </span>
-                                                                                </Link>
-                                                                        </li>
-                                                                        <li className="nav-item">
-                                                                                <Link className="nav-link" to="./#">
-                                                                                        <span className="nav-link-icon d-md-none d-lg-inline-block">{/* Download SVG icon from http://tabler-icons.io/i/star */}
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>
-                                                                                        </span>
-                                                                                        <span className="nav-link-title">
-                                                                                                Second
-                                                                                        </span>
-                                                                                        <span className="badge badge-sm bg-red">2</span>
-                                                                                </Link>
-                                                                        </li>
-                                                                        <li className="nav-item dropdown">
-                                                                                <Link className="nav-link dropdown-toggle" to="#navbar-third" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                                                                        <span className="nav-link-icon d-md-none d-lg-inline-block">{/* Download SVG icon from http://tabler-icons.io/i/star */}
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>
-                                                                                        </span>
-                                                                                        <span className="nav-link-title">
-                                                                                                Third
-                                                                                        </span>
-                                                                                </Link>
-                                                                                <div className="dropdown-menu">
-                                                                                        <Link className="dropdown-item" to="./#">
-                                                                                                First
-                                                                                        </Link>
-                                                                                        <Link className="dropdown-item" to="./#">
-                                                                                                Second
-                                                                                        </Link>
-                                                                                        <Link className="dropdown-item" to="./#">
-                                                                                                Third
-                                                                                        </Link>
-                                                                                </div>
-                                                                        </li>
 
-                                                                </ul>
-                                                                <SearchBox />
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </header>
                         </div >                </>
         )
 }

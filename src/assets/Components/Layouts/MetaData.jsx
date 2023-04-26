@@ -5,7 +5,7 @@ export default function MetaData({ title }) {
     return (
         <>
             <Helmet>
-                <title>NetBag{title}</title>
+                <title>{title} - NetBag.in</title>
             </Helmet>
         </>
     )

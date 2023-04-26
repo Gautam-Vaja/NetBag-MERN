@@ -9,6 +9,7 @@ import OffersSection from './ReUsable/OffersSection'
 import ServicesByNetbag from './ReUsable/ServicesByNetbag'
 import ReactStars from "react-rating-stars-component"
 import ReviewsSection from './ReUsable/ReviewsSection'
+import MetaData from '../Layouts/MetaData'
 
 
 
@@ -39,6 +40,7 @@ const ProductDetails = () => {
     }
     return (
         <div>
+            <MetaData title={`${name}`} />
             {
                 loading ? <DotLoader /> :
                     <div className="row mx-1 d-flex justify-content-center">

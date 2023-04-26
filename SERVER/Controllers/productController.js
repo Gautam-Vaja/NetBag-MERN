@@ -6,10 +6,13 @@ const AsyncErrors = require("../middleware/AsyncErrors")
 
 exports.GetAllProducts = AsyncErrors(async (req, res, next) => {
     const resultPerPage = 20
-    const apiFeature = new ApiFeatures(Products.find(), req.query).search().filter().pagination(resultPerPage)
-    const product = await apiFeature.query;
+    let apiFeature = new ApiFeatures(Products.find(), req.query).search().filter()
+    let product = await apiFeature.query;
+    const fillteredProductsCount = product.length
+    apiFeature = apiFeature.pagination(resultPerPage)
     const ProductCount = await product.length
-    res.status(200).json({ success: true, product, ProductCount, resultPerPage })
+    res.status(200).json({ success: true, product, ProductCount, fillteredProductsCount, resultPerPage })
+
 })
 
 // Create Product --- ADMIN ONLY--

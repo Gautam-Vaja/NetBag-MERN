@@ -3,10 +3,14 @@ import { ALL_PRODUCT_FAIL, ALL_PRODUCT_REQUEST, ALL_PRODUCT_SUCCESS, CLEAR_ERROR
 
 const host = "http://localhost:8000/api/v1"
 
-export const GetProduct = (keyword = "", price = [0, 150000]) => async (dispatch) => {
+export const GetProduct = (keyword = "", price = [0, 150000], Category, Rattings) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PRODUCT_REQUEST })
-        const { data } = await axios.get(`http://localhost:8000/api/v1/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}`)
+        let link = `http://localhost:8000/api/v1/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&rattings[gte]=${Rattings}`
+        if (Category) {
+            link = `http://localhost:8000/api/v1/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${Category}&rattings[gte]=${Rattings}`
+        }
+        const { data } = await axios.get(link)
         dispatch({
             type: ALL_PRODUCT_SUCCESS,
             payload: data
@@ -27,7 +31,7 @@ export const GetProduct = (keyword = "", price = [0, 150000]) => async (dispatch
 export const GetProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
-        const { data } = await axios.get(`${host}/products/${id}`)
+        const { data } = await axios.get(`http://localhost:8000/api/v1/products/${id}`)
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload: data

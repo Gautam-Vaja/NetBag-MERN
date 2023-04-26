@@ -1,10 +1,11 @@
 import React from 'react'
 import Header from './assets/Components/Layouts/Header'
 import Footer from './assets/Components/Layouts/Footer'
-import Home from './assets/Components/Pages/Home'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ProductDetails from './assets/Components/Pages/ProductDetails.jsx'
 import Products from './assets/Components/Pages/Products'
+import Registration from './assets/Components/Pages/Customers/Registration'
+import Login from './assets/Components/Pages/Customers/Login'
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductDetails />} />
           <Route path='/products/:keyword' element={<Products />} />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/signin' element={<Login />} />
 
 
         </Routes>

@@ -119,28 +119,24 @@ export default function Header() {
                                                                         </div>
                                                                 </div>
                                                         </div>
+
                                                         <div className="nav-item dropdown">
                                                                 <Link to="#" className="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                                                                        <span className="avatar avatar-sm" style={{ backgroundImage: "url(./static/avatars/002f.jpg)" }}></span>
+                                                                        <span className="avatar avatar-sm" style={{ backgroundImage: "url()" }}></span>
                                                                         <div className="d-none d-xl-block ps-2">
-                                                                                <div>Kellie Skingley</div>
-                                                                                <div className="mt-1 small text-muted">Teacher</div>
+                                                                                <div>SignIn</div>
+                                                                                <div className="mt-1 small text-muted">Hello</div>
                                                                         </div>
                                                                 </Link>
                                                                 <div className="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                                        <Link to="#" className="dropdown-item">Status</Link>
-                                                                        <Link to="./profile.html" className="dropdown-item">Profile</Link>
-                                                                        <Link to="#" className="dropdown-item">Feedback</Link>
-                                                                        <div className="dropdown-divider"></div>
-                                                                        <Link to="./settings.html" className="dropdown-item">Settings</Link>
-                                                                        <Link to="./sign-in.html" className="dropdown-item">Logout</Link>
+                                                                        <Link to="/signin" className="dropdown-item">Login</Link>
+                                                                        <Link to="/registration" className="dropdown-item">New Registration</Link>
                                                                 </div>
                                                         </div>
                                                 </div>
                                         </div>
                                 </header>
-
-
-                        </div >                </>
+                        </div >
+                </>
         )
 }

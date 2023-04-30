@@ -38,8 +38,8 @@ const Login = () => {
         if (isAuthenticated) {
             Navigate("/account")
         }
-        
-    }, [dispatch, Error])
+
+    }, [dispatch, Error, Navigate, isAuthenticated, user])
 
 
 

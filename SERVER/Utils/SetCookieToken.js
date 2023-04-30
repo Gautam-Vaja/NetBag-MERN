@@ -6,6 +6,7 @@ exports.sendToken = async (user, StatusCode, res) => {
         const options = {
                 expire: new Date(Date.now + 10800000000),
                 httpOnly: true,
+                secure: false
         }
         res.status(StatusCode).cookie("token", token, options).json({
                 success: true,

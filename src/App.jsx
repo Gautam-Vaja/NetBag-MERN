@@ -6,14 +6,30 @@ import ProductDetails from './assets/Components/Pages/ProductDetails.jsx'
 import Products from './assets/Components/Pages/Products'
 import Registration from './assets/Components/Pages/Customers/Registration'
 import Login from './assets/Components/Pages/Customers/Login'
+import store from "./Store"
+import { useEffect } from 'react'
+import { ClearErrors, loadUser } from './assets/Components/Services/Actions/UserAction'
+import { useSelector } from 'react-redux'
 
 
 function App() {
+  const { user, error, loading, isAuthenticated, userimg, role } = useSelector(state => state.UserReducer)
+  useEffect(() => {
+    if (!error) {
+      store.dispatch(ClearErrors())
+    }
+    store.dispatch(loadUser())
+  }, [])
+
+
+
   return (
+
     <>
 
-      <Router>
-        <Header />
+
+      {user && <Router>
+        <Header ProfilePic={{ userimg, role, isAuthenticated }} />
         <Routes>
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductDetails />} />
@@ -25,6 +41,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
+      }
 
     </>
   )

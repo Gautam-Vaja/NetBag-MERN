@@ -2,13 +2,19 @@ import React from 'react'
 import Logo from '../../../../public/NetBag-Logo.png';
 import { Link } from 'react-router-dom';
 import SearchBox from './ReUseble/SearchBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { logout } from '../Services/Actions/UserAction';
 
 
-export default function Header() {
-        const options = {}
-        const OnChangeHandler = () => {
+export default function Header({ ProfilePic }) {
+        const { userimg, role, isAuthenticated } = ProfilePic
+        const OnChangeHandler = () => { }
 
-        }
+        const dispatch = useDispatch()
+
+
+
         return (
                 <>
                         <div className=" sticky-top  ">
@@ -26,7 +32,7 @@ export default function Header() {
                                                 <div className="navbar-nav flex-row order-md-last d-flex align-items-center">
                                                         <SearchBox />
                                                         <div className="d-none d-md-flex">
-                                                                <Link to="?theme=dark" className="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
+                                                                <Link className="cursor-pointer nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
                                                                         {/*- Download SVG icon from http://tabler-icons.io/i/moon */}
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg>
                                                                 </Link>
@@ -120,22 +126,25 @@ export default function Header() {
                                                                 </div>
                                                         </div>
 
-                                                        <div className="nav-item dropdown">
+                                                        <div className="nav-item dropdown ">
                                                                 <Link to="#" className="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                                                                        <span className="avatar avatar-sm" style={{ backgroundImage: "url()" }}></span>
+                                                                        <span className="avatar avatar-sm" style={{ backgroundImage: `url(${userimg ? userimg : "/defaultUser.png"})` }}></span>
                                                                         <div className="d-none d-xl-block ps-2">
                                                                                 <div>SignIn</div>
                                                                                 <div className="mt-1 small text-muted">Hello</div>
                                                                         </div>
                                                                 </Link>
                                                                 <div className="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                                        <Link to="/signin" className="dropdown-item">Login</Link>
-                                                                        <Link to="/registration" className="dropdown-item">New Registration</Link>
+                                                                        {!isAuthenticated ? <> <Link to="/signin" className="dropdown-item">Login</Link><Link to="/registration" className="dropdown-item">New Registration</Link></> : <Link className="dropdown-item" onClick={() => { dispatch(logout()) }}>LogOut</Link>}
                                                                 </div>
                                                         </div>
+                                                        {role === "admin" ? <Link to="/Dashboard" className="avatar avatar-sm ms-3" style={{ backgroundImage: `url(${"/defaultUser.png"})` }}></Link>
+                                                                : ""}
+
+
                                                 </div>
                                         </div>
-                                </header>
+                                </header >
                         </div >
                 </>
         )

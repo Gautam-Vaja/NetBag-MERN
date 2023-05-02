@@ -132,7 +132,7 @@ export default function Header({ ProfilePic }) {
                                                                         </div>
                                                                 </Link>
                                                                 <div className="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                                        {!isAuthenticated ? <> <Link to="/signin" className="dropdown-item">Login</Link><Link to="/registration" className="dropdown-item">New Registration</Link></> : <Link className="dropdown-item" onClick={() => { dispatch(logout()) }}>LogOut</Link>}
+                                                                        {!isAuthenticated ? <> <Link to="/signin" className="dropdown-item">Login</Link><Link to="/registration" className="dropdown-item">New Registration</Link></> : <><Link to="/account" className="dropdown-item">Profile</Link><Link className="dropdown-item" onClick={() => { dispatch(logout()) }}>LogOut</Link></>}
                                                                 </div>
                                                         </div>
                                                         {role === "admin" ? <Link to="/Dashboard" className="avatar avatar-sm ms-3" style={{ backgroundImage: `url(${"/defaultUser.png"})` }}></Link>

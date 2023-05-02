@@ -1,17 +1,17 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { loadUser } from '../../Services/Actions/UserAction'
+import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Profile = () => {
     const Navigate = useNavigate()
-    const { loading, isAuthenticated, user, userimg, role, error } = useSelector(state => state.UserReducer)
+    const { loading, isAuthenticated, user, userimg, role, error } = useSelector(state => state.UserReducer)  
     useEffect(() => {
-        if (isAuthenticated === false) {
+        if (isAuthenticated !== true) {
             Navigate("/signin")
         }
-    }, [Navigate])
+    }, [Navigate, isAuthenticated])
+
 
     return (
         <>

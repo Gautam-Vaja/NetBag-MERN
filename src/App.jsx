@@ -12,6 +12,7 @@ import { cleanErrors, loadUser } from './assets/Components/Services/Actions/User
 import { useDispatch, useSelector } from 'react-redux'
 import { ClearErrors } from './assets/Components/Services/Actions/ProductAction'
 import Profile from './assets/Components/Pages/Customers/Profile'
+import EditProfile from './assets/Components/Pages/Customers/EditProfile'
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path='/registration' element={<Registration />} />
           <Route path='/signin' element={<Login />} />
           <Route path='/account' element={<Profile />} />
+          <Route path='/edit-profile' element={<EditProfile />} />
 
 
         </Routes>

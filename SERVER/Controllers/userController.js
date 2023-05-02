@@ -118,7 +118,7 @@ exports.UpdatePassword = AsyncErrors(async (req, res, next) => {
 exports.UpdateProfile = AsyncErrors(async (req, res, next) => {
 
         const { name, email } = req.body
-
+        console.log(name + ":" + email)
         const NewUserData = { name, email }
         const user = await User.findByIdAndUpdate(req.user.id, NewUserData,
                 { new: true, runValidators: true, useFindAndModify: false })

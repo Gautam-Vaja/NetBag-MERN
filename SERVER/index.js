@@ -11,7 +11,7 @@ ConnectToMongo()
 
 app.use(cookieParser());
 
-console.log(process.env.COOKIE_EXPIRES)
+
 // Handlaling Uncaught Exceptoion
 process.on("uncaughtException", (error) => {
     console.log(error.message)

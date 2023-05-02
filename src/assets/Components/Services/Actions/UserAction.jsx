@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_USER_FAIL, LOGOUT_USER_SUCCESS, REGISTRATION_FAIL, REGISTRATION_REQUEST, REGISTRATION_SUCCESS } from "../Constants/UserConstants";
+import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_USER_FAIL, LOGOUT_USER_SUCCESS, REGISTRATION_FAIL, REGISTRATION_REQUEST, REGISTRATION_SUCCESS, UPDATE_PROFILE_FAIL, UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS } from "../Constants/UserConstants";
 
 const host = `http://localhost:8000/api/v1/user`
 
@@ -71,6 +71,28 @@ export const logout = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,
+            payload: error.responce.data.message
+        })
+    }
+
+}
+
+export const updateProfile = (userData) => async (dispatch) => {
+
+    try {
+
+        dispatch({ type: UPDATE_PROFILE_REQUEST })
+
+        const config = {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true
+        }
+        const { data } = await axios.put(`${host}/me/update`, { userData }, config)
+        dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.user })
+        console.log("hello")
+    } catch (error) {
+        dispatch({
+            type: UPDATE_PROFILE_FAIL,
             payload: error.responce.data.message
         })
     }

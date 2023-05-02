@@ -47,13 +47,15 @@ export const loadUser = () => async (dispatch) => {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true
         }
-        const { data, status } = await axios.get(`${host}/me`, config)
+
+        const { data } = await axios.get(`${host}/me`, config)
 
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user })
     } catch (error) {
+        console.log("hello")
         dispatch({
             type: LOAD_USER_FAIL,
-            payload: error.responce
+            payload: error.message
         })
     }
 
@@ -75,6 +77,7 @@ export const logout = () => async (dispatch) => {
 
 }
 
-export const ClearErrors = () => async (dispatch) => {
-    dispatch({ type: CLEAR_ERRORS })
+export const cleanErrors = () => async (dispatch) => {
+    console.log("clean eEror")
+    await dispatch({ type: CLEAR_ERRORS, payload: "Hii" })
 }

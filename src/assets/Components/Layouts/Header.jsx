@@ -1,14 +1,12 @@
 import React from 'react'
-import Logo from '../../../../public/NetBag-Logo.png';
 import { Link } from 'react-router-dom';
 import SearchBox from './ReUseble/SearchBox';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { logout } from '../Services/Actions/UserAction';
 
 
 export default function Header({ ProfilePic }) {
-        const { userimg, role, isAuthenticated } = ProfilePic
+        const { userimg, role, isAuthenticated, user } = ProfilePic
         const OnChangeHandler = () => { }
 
         const dispatch = useDispatch()
@@ -23,10 +21,9 @@ export default function Header({ ProfilePic }) {
                                                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
                                                         <span className="navbar-toggler-icon"></span>
                                                 </button>
-                                                <h1 className="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                                                <h1 className="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3 p-0">
                                                         <Link to=".">
-                                                                <img src="./static/logo-small.svg" width="32" height="32" alt="Tabler" className="navbar-brand-image me-3" />
-                                                                Dashboard
+                                                                <img src="/NetBag-Logo.png" width="40" height="auto" alt="Tabler" className="navbar-brand-image" />
                                                         </Link>
                                                 </h1>
                                                 <div className="navbar-nav flex-row order-md-last d-flex align-items-center">
@@ -130,8 +127,8 @@ export default function Header({ ProfilePic }) {
                                                                 <Link to="#" className="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                                                                         <span className="avatar avatar-sm" style={{ backgroundImage: `url(${userimg ? userimg : "/defaultUser.png"})` }}></span>
                                                                         <div className="d-none d-xl-block ps-2">
-                                                                                <div>SignIn</div>
-                                                                                <div className="mt-1 small text-muted">Hello</div>
+                                                                                <div>{user?.name}</div>
+                                                                                <div className="mt-1 small text-muted">{user?.email}</div>
                                                                         </div>
                                                                 </Link>
                                                                 <div className="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

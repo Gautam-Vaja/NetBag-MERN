@@ -3,9 +3,10 @@ import Logo from '../../../../../public/NetBag-Logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ClearErrors, signin } from '../../Services/Actions/UserAction';
+import {  signin } from '../../Services/Actions/UserAction';
 import { useEffect } from 'react';
 import { DotLoader } from 'react-spinners';
+import { ClearErrors } from '../../Services/Actions/ProductAction';
 
 
 
@@ -33,7 +34,7 @@ const Login = () => {
 
     useEffect(() => {
         if (Error) {
-            dispatch(ClearErrors())
+            dispatch()
         }
         if (isAuthenticated) {
             Navigate("/account")

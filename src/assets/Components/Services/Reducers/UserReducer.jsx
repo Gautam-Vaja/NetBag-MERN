@@ -33,10 +33,7 @@ export const UserReducer = (state = initialState, action) => {
             }
         case LOAD_USER_FAIL:
             return {
-                loading: false,
-                isAuthenticated: false,
-                user: null,
-                error: action.payload
+                error: action.payload,  
             }
         case LOGOUT_USER_SUCCESS:
             return {
@@ -52,8 +49,7 @@ export const UserReducer = (state = initialState, action) => {
 
         case CLEAR_ERRORS:
             return {
-                ...state,
-                error: null
+                error: "yeko"
             }
 
         default:
